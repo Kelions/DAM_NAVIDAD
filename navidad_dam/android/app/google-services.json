@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "789290668765",
+    "project_id": "dam2021-2-regalos",
+    "storage_bucket": "dam2021-2-regalos.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:789290668765:android:1608f1fc9919bc0124c134",
+        "android_client_info": {
+          "package_name": "cl.dam2021.navidad_dam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "789290668765-ucev8v2mt0b2b920t0j4hks359u4rug1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4mjoa00u1qW5f13s-HXFBHzdzLhgERqo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "789290668765-ucev8v2mt0b2b920t0j4hks359u4rug1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

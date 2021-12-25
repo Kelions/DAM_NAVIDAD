@@ -3,6 +3,7 @@ import 'package:navidad_dam/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:navidad_dam/pages/form_registro.dart';
+import 'package:navidad_dam/pages/form_login.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,13 +22,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Regalos',
       theme: theme.copyWith(
-        colorScheme: theme.colorScheme.copyWith(
-          primary: kPrimaryColor,
-          secondary: kSecondaryColor,
-          background: kBackgroundColor,
-        )
-      ),
-      home: form_registro(),
+          colorScheme: theme.colorScheme.copyWith(
+        primary: kPrimaryColor,
+        secondary: kSecondaryColor,
+        background: kBackgroundColor,
+      )),
+      home: FormLogin(),
     );
   }
 }

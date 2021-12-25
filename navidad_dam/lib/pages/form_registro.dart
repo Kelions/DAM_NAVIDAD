@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navidad_dam/constants.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class form_registro extends StatefulWidget {
@@ -14,7 +15,6 @@ class _form_registroState extends State<form_registro> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.red.shade900,
       appBar: AppBar(
           leading: Icon(MdiIcons.hexagram),
           title: Text('Registro'),
@@ -25,7 +25,7 @@ class _form_registroState extends State<form_registro> {
           children: [
             Container(
                 alignment: Alignment.center,
-                decoration: BoxDecoration(color: Colors.green.shade600),
+                decoration: BoxDecoration(color: kPrimaryColor),
                 child: Icon(MdiIcons.account),
                 padding: EdgeInsets.all(10)),
             Expanded(
