@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:navidad_dam/constants.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import 'package:navidad_dam/pages/form_registro.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -12,11 +16,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = ThemeData();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Regalos',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+      theme: theme.copyWith(
+        colorScheme: theme.colorScheme.copyWith(
+          primary: kPrimaryColor,
+          secondary: kSecondaryColor,
+          background: kBackgroundColor,
+        )
       ),
       home: form_registro(),
     );
