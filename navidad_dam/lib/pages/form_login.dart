@@ -1,6 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:navidad_dam/pages/user_dashboard.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:navidad_dam/util/nav.dart';
 
 class FormLogin extends StatefulWidget {
   @override
@@ -46,6 +49,7 @@ class _FormLoginState extends State<FormLogin> {
 
   Container botonLogin() {
     return Container(
+      margin: EdgeInsets.all(10),
       width: double.infinity,
       child: ElevatedButton(
         child: Text('Iniciar Sesion'),
@@ -59,6 +63,7 @@ class _FormLoginState extends State<FormLogin> {
             SharedPreferences sp = await SharedPreferences.getInstance();
             sp.setString('user_email', emailCtrl.text.trim());
             // navigate to dashboard
+            NavUtil.navigateTo(context, UserDashboard(), replacement: true);
           } on FirebaseAuthException catch (except) {
             switch (except.code) {
               case 'user-not-found':
