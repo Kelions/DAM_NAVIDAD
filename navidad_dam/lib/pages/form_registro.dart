@@ -43,6 +43,13 @@ class _form_registroState extends State<form_registro> {
     return TextFormField(
       decoration: InputDecoration(
           labelText: 'Contraseña', icon: Icon(MdiIcons.accountKey)),
+      validator: (clave) {
+        if (clave!.isEmpty) {
+          return 'Ingrese Clave';
+        } else {
+          return null;
+        }
+      },
     );
   }
 
@@ -51,6 +58,13 @@ class _form_registroState extends State<form_registro> {
       decoration: InputDecoration(
           labelText: 'Correo', icon: Icon(MdiIcons.cardAccountMail)),
       keyboardType: TextInputType.emailAddress,
+      validator: (email) {
+        if (email!.isEmpty) {
+          return 'Ingrese Email';
+        } else {
+          return null;
+        }
+      },
     );
   }
 
@@ -59,7 +73,11 @@ class _form_registroState extends State<form_registro> {
       padding: EdgeInsets.all(5),
       child: ElevatedButton(
         child: Text('Registrar'),
-        onPressed: () {},
+        onPressed: () {
+          if (formKey.currentState!.validate()) {
+            print('Registrado');
+          }
+        },
       ),
     );
   }
