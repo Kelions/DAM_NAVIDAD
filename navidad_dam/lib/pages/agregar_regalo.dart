@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:coolicons/coolicons.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:navidad_dam/service/firestore_service.dart';
 
 class AgregarRegalo extends StatefulWidget {
   final String amigoID;
@@ -39,6 +41,9 @@ class _AgregarRegaloState extends State<AgregarRegalo> {
       descripcionCtrl.text = widget.descripcion;
       valorCtrl.text = widget.valor.toString();
       tiendaCtrl.text = widget.tienda;
+
+      titleText = 'Editar Regalo';
+      buttonText = 'Guardar';
     }
     return Scaffold(
       appBar: AppBar(
@@ -135,10 +140,36 @@ class _AgregarRegaloState extends State<AgregarRegalo> {
     return Container(
       padding: EdgeInsets.all(5),
       child: ElevatedButton(
-        child: Text('Agregar'),
-        onPressed: () {
+        child: Text(buttonText),
+        onPressed: () async {
           if (formKey.currentState!.validate()) {
             print('Registrado');
+            if (widget.id != '') {
+              try {
+                print(await FirestoreService().regalosActualizar(
+                    widget.id,
+                    widget.amigoID,
+                    regaloCtrl.text.trim(),
+                    descripcionCtrl.text.trim(),
+                    int.parse(valorCtrl.text.trim()),
+                    tiendaCtrl.text.trim()));
+                Navigator.pop(context);
+              } on FirebaseAuthException catch (except) {
+                print(except.code);
+              }
+            } else {
+              try {
+                print(await FirestoreService().regalosAgregar(
+                    widget.amigoID,
+                    regaloCtrl.text.trim(),
+                    descripcionCtrl.text.trim(),
+                    int.parse(valorCtrl.text.trim()),
+                    tiendaCtrl.text.trim()));
+                Navigator.pop(context);
+              } on FirebaseAuthException catch (except) {
+                print(except.code);
+              }
+            }
           }
         },
       ),

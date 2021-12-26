@@ -10,6 +10,35 @@ class FirestoreService {
         .snapshots();
   }
 
+  Future regalosAgregar(String amigoID, String regalo, String descripcion,
+      int valor, String tienda) {
+    return FirebaseFirestore.instance.collection('regalos').doc().set({
+      'amigo_id': amigoID,
+      'idea': regalo,
+      'descripcion': descripcion,
+      'valor': valor,
+      'tienda': tienda
+    });
+  }
+
+  Future regalosActualizar(String regaloID, String amigoID, String regalo,
+      String descripcion, int valor, String tienda) {
+    return FirebaseFirestore.instance.collection('regalos').doc(regaloID).set({
+      'amigo_id': amigoID,
+      'idea': regalo,
+      'descripcion': descripcion,
+      'valor': valor,
+      'tienda': tienda
+    });
+  }
+
+  Future regalosBorrar(String regaloID) {
+    return FirebaseFirestore.instance
+        .collection('amigos')
+        .doc(regaloID)
+        .delete();
+  }
+
   // Amigos
   Stream<QuerySnapshot> amigos() {
     String? userUID = FirebaseAuth.instance.currentUser?.uid;
@@ -21,7 +50,9 @@ class FirestoreService {
 
   Future amigosAgregar(
       String nombre, String email, String descripcion, String profesion) async {
-    FirebaseFirestore.instance.collection('amigos').doc().set({
+    String? userUID = FirebaseAuth.instance.currentUser?.uid;
+    return FirebaseFirestore.instance.collection('amigos').doc().set({
+      'user_uid': userUID,
       'nombre': nombre,
       'email': email,
       'descripcion': descripcion,
@@ -38,7 +69,9 @@ class FirestoreService {
 
   Future amigosActualizar(String amigoID, String nombre, String email,
       String descripcion, String profesion) {
+    String? userUID = FirebaseAuth.instance.currentUser?.uid;
     return FirebaseFirestore.instance.collection('amigos').doc(amigoID).set({
+      'user_uid': userUID,
       'nombre': nombre,
       'email': email,
       'descripcion': descripcion,

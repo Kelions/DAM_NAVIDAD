@@ -11,13 +11,14 @@ import 'package:navidad_dam/widgets/regalo_card.dart';
 
 class AmigoDetail extends StatefulWidget {
   final String id;
+  final String usuarioUID;
   final String nombre;
   final String email;
   final String descripcion;
   final String profesion;
 
-  const AmigoDetail(
-      this.id, this.nombre, this.email, this.descripcion, this.profesion);
+  const AmigoDetail(this.id, this.usuarioUID, this.nombre, this.email,
+      this.descripcion, this.profesion);
 
   @override
   _AmigoDetailState createState() => _AmigoDetailState();
@@ -45,6 +46,7 @@ class _AmigoDetailState extends State<AmigoDetail> {
                 NavUtil.navigateTo(
                     context,
                     AgregarAmigo(
+                      userUID: widget.usuarioUID,
                       amigoID: widget.id,
                       nombre: widget.nombre,
                       email: widget.email,

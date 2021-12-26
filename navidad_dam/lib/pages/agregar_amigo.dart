@@ -1,9 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:coolicons/coolicons.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:navidad_dam/service/firestore_service.dart';
 
 class AgregarAmigo extends StatefulWidget {
+  final String userUID;
   final String amigoID;
   final String nombre;
   final String email;
@@ -11,7 +13,8 @@ class AgregarAmigo extends StatefulWidget {
   final String profesion;
 
   AgregarAmigo(
-      {this.amigoID = '',
+      {this.userUID = '',
+      this.amigoID = '',
       this.nombre = '',
       this.email = '',
       this.descripcion = '',
@@ -148,10 +151,35 @@ class _AgregarAmigoState extends State<AgregarAmigo> {
     return Container(
       padding: EdgeInsets.all(5),
       child: ElevatedButton(
-        child: Text('Agregar'),
-        onPressed: () {
+        child: Text(buttonText),
+        onPressed: () async {
           if (formKey.currentState!.validate()) {
-            print('Registrado');
+            if (widget.amigoID != '') {
+              try {
+                print(await FirestoreService().amigosActualizar(
+                    widget.amigoID,
+                    nombreCtrl.text.trim(),
+                    emailCtrl.text.trim(),
+                    descripcionCtrl.text.trim(),
+                    profesionCtrl.text.trim()));
+                Navigator.pop(context);
+                setState(() {});
+              } on FirebaseAuthException catch (except) {
+                print(except.code);
+              }
+            } else {
+              try {
+                print(await FirestoreService().amigosAgregar(
+                    nombreCtrl.text.trim(),
+                    emailCtrl.text.trim(),
+                    descripcionCtrl.text.trim(),
+                    profesionCtrl.text.trim()));
+                Navigator.pop(context);
+              } on FirebaseAuthException catch (except) {
+                print(except.code);
+              }
+              print('Registrado');
+            }
           }
         },
       ),
