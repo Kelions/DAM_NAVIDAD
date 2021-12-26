@@ -19,8 +19,16 @@ class _homeState extends State<home> {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
-            title: Text("Home"),
-            centerTitle: true,
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/img/navidad/santa.PNG',
+                  fit: BoxFit.contain,
+                  height: 70,
+                )
+              ],
+            ),
             bottom: TabBar(
               tabs: [
                 Tab(
