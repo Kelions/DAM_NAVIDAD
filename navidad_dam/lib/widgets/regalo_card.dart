@@ -30,10 +30,12 @@ class RegaloCard extends StatelessWidget {
       },
       child: Card(
         child: ListTile(
-            leading: Icon(MdiIcons.gift),
-            title: Text(idea),
-            subtitle: Text(descripcion),
-            trailing: Text('\$ ${valor}')),
+          leading: Icon(MdiIcons.gift),
+          title: Text(idea),
+          subtitle: Text('${tienda} \n ${descripcion}'),
+          trailing: Text('\$ ${valor}'),
+          isThreeLine: true,
+        ),
       ),
     );
   }
