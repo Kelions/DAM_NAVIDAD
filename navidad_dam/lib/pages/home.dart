@@ -26,7 +26,13 @@ class _homeState extends State<home> {
                   'assets/img/navidad/santa.PNG',
                   fit: BoxFit.contain,
                   height: 70,
-                )
+                ),
+                Text("Navidad Manager"),
+                Image.asset(
+                  'assets/img/navidad/santa.PNG',
+                  fit: BoxFit.contain,
+                  height: 70,
+                ),
               ],
             ),
             bottom: TabBar(
