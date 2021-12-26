@@ -23,6 +23,10 @@ class AgregarAmigo extends StatefulWidget {
 
 class _AgregarAmigoState extends State<AgregarAmigo> {
   final formKey = GlobalKey<FormState>();
+
+  final correoValidator =
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
+
   TextEditingController nombreCtrl = TextEditingController();
   TextEditingController emailCtrl = TextEditingController();
   TextEditingController descripcionCtrl = TextEditingController();
@@ -99,6 +103,9 @@ class _AgregarAmigoState extends State<AgregarAmigo> {
       validator: (correo) {
         if (correo!.isEmpty) {
           return 'Ingrese el correo del amigo';
+        }
+        if (!RegExp(correoValidator).hasMatch(correo)) {
+          return 'ingrese un correo valido';
         } else {
           return null;
         }

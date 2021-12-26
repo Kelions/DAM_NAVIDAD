@@ -11,7 +11,8 @@ class form_registro extends StatefulWidget {
 
 class _form_registroState extends State<form_registro> {
   final formKey = GlobalKey<FormState>();
-
+  final correoValidator =
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,6 +62,9 @@ class _form_registroState extends State<form_registro> {
       validator: (email) {
         if (email!.isEmpty) {
           return 'Ingrese Email';
+        }
+        if (!RegExp(correoValidator).hasMatch(email)) {
+          return 'Ingrese Email Valido';
         } else {
           return null;
         }
