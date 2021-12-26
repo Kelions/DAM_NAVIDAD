@@ -2,8 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class FirestoreService {
-  Stream<QuerySnapshot> regalos() {
-    return FirebaseFirestore.instance.collection('regalos').snapshots();
+  Stream<QuerySnapshot> regalos(String amigoID) {
+    print(amigoID);
+    return FirebaseFirestore.instance
+        .collection('regalos')
+        .where('amigo_id', isEqualTo: amigoID)
+        .snapshots();
   }
 
   // Amigos
