@@ -16,7 +16,7 @@ class _FormLoginState extends State<FormLogin> {
   TextEditingController emailCtrl = TextEditingController();
   TextEditingController passwordCtrl = TextEditingController();
   String errorText = '';
-
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,17 +26,29 @@ class _FormLoginState extends State<FormLogin> {
           child: Column(
             children: [
               TextFormField(
-                controller: emailCtrl,
-                decoration: InputDecoration(
-                    labelText: 'Email', icon: Icon(MdiIcons.cardAccountMail)),
-                keyboardType: TextInputType.emailAddress,
-              ),
+                  controller: emailCtrl,
+                  decoration: InputDecoration(
+                      labelText: 'Email', icon: Icon(MdiIcons.cardAccountMail)),
+                  keyboardType: TextInputType.emailAddress,
+                  validator: (email) {
+                    if (email!.isEmpty) {
+                      return 'Ingrese Email';
+                    } else {
+                      return null;
+                    }
+                  }),
               TextFormField(
-                controller: passwordCtrl,
-                decoration: InputDecoration(
-                    labelText: 'Contraseña', icon: Icon(MdiIcons.accountKey)),
-                obscureText: true,
-              ),
+                  controller: passwordCtrl,
+                  decoration: InputDecoration(
+                      labelText: 'Contraseña', icon: Icon(MdiIcons.accountKey)),
+                  obscureText: true,
+                  validator: (clave) {
+                    if (clave!.isEmpty) {
+                      return 'Ingrese descripción de su amigo';
+                    } else {
+                      return null;
+                    }
+                  }),
               botonLogin(),
               Container(
                 child: Text(errorText),
@@ -55,6 +67,9 @@ class _FormLoginState extends State<FormLogin> {
       child: ElevatedButton(
         child: Text('Iniciar Sesion'),
         onPressed: () async {
+          if (formKey.currentState!.validate()) {
+            print('Registrado');
+          }
           UserCredential? userCredencial;
           try {
             userCredencial = await FirebaseAuth.instance
