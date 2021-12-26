@@ -20,11 +20,14 @@ class AmigoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => NavUtil.navigateTo(context, AmigoDetail()),
+      onTap: () => NavUtil.navigateTo(
+          context, AmigoDetail(id, nombre, email, descripcion, profesion)),
       child: Card(
         child: ListTile(
           leading: const Icon(Coolicons.user),
           title: Text(nombre),
+          subtitle: Text(profesion),
+          trailing: Text('Regalos: '),
         ),
       ),
     );
