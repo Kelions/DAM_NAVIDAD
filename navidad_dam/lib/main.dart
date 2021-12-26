@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         secondary: kSecondaryColor,
         background: kBackgroundColor,
       )),
-      home: AgregarRegalo(),
+      home: home(),
     );
   }
 }

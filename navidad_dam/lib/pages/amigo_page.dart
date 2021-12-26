@@ -3,7 +3,9 @@ import 'package:coolicons/coolicons.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:navidad_dam/constants.dart';
+import 'package:navidad_dam/pages/agregar_amigo.dart';
 import 'package:navidad_dam/service/firestore_service.dart';
+import 'package:navidad_dam/util/nav.dart';
 import 'package:navidad_dam/widgets/regalo_card.dart';
 
 class AmigoDetail extends StatefulWidget {
@@ -36,7 +38,20 @@ class _AmigoDetailState extends State<AmigoDetail> {
                 await FirestoreService().amigosBorrar(widget.id);
                 Navigator.pop(context);
               },
-              icon: Icon(Coolicons.trash_full))
+              icon: Icon(Coolicons.trash_full)),
+          IconButton(
+              onPressed: () async {
+                NavUtil.navigateTo(
+                    context,
+                    AgregarAmigo(
+                      amigoID: widget.id,
+                      nombre: widget.nombre,
+                      email: widget.email,
+                      descripcion: widget.descripcion,
+                      profesion: widget.profesion,
+                    ));
+              },
+              icon: Icon(Coolicons.edit))
         ],
       ),
       body: Column(
