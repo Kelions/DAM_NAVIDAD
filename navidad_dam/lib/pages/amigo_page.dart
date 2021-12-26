@@ -1,4 +1,6 @@
+import 'package:coolicons/coolicons.dart';
 import 'package:flutter/material.dart';
+import 'package:navidad_dam/service/firestore_service.dart';
 
 class AmigoDetail extends StatefulWidget {
   final String id;
@@ -20,6 +22,14 @@ class _AmigoDetailState extends State<AmigoDetail> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.nombre),
+        actions: [
+          IconButton(
+              onPressed: () async {
+                await FirestoreService().amigosBorrar(widget.id);
+                Navigator.pop(context);
+              },
+              icon: Icon(Coolicons.trash_full))
+        ],
       ),
     );
   }
