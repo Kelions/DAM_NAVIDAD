@@ -81,6 +81,13 @@ class _AgregarAmigoState extends State<AgregarAmigo> {
       controller: nombreCtrl,
       decoration:
           InputDecoration(labelText: 'Nombre', icon: Icon(MdiIcons.renameBox)),
+      validator: (nombre) {
+        if (nombre!.isEmpty) {
+          return 'Ingrese el nombre del amigo';
+        } else {
+          return null;
+        }
+      },
     );
   }
 
@@ -89,6 +96,13 @@ class _AgregarAmigoState extends State<AgregarAmigo> {
       controller: emailCtrl,
       decoration:
           InputDecoration(labelText: 'Correo', icon: Icon(Coolicons.mail_open)),
+      validator: (correo) {
+        if (correo!.isEmpty) {
+          return 'Ingrese el correo del amigo';
+        } else {
+          return null;
+        }
+      },
       keyboardType: TextInputType.emailAddress,
     );
   }
@@ -98,6 +112,13 @@ class _AgregarAmigoState extends State<AgregarAmigo> {
       controller: descripcionCtrl,
       decoration: InputDecoration(
           labelText: 'Descripcion', icon: Icon(MdiIcons.accountDetailsOutline)),
+      validator: (descripcion) {
+        if (descripcion!.isEmpty) {
+          return 'Ingrese descripción de su amigo';
+        } else {
+          return null;
+        }
+      },
     );
   }
 
@@ -106,6 +127,13 @@ class _AgregarAmigoState extends State<AgregarAmigo> {
       controller: profesionCtrl,
       decoration: InputDecoration(
           labelText: 'Profesion', icon: Icon(MdiIcons.briefcase)),
+      validator: (profesion) {
+        if (profesion!.isEmpty) {
+          return 'Ingrese la profesion de su amigo';
+        } else {
+          return null;
+        }
+      },
     );
   }
 
@@ -114,7 +142,11 @@ class _AgregarAmigoState extends State<AgregarAmigo> {
       padding: EdgeInsets.all(5),
       child: ElevatedButton(
         child: Text('Agregar'),
-        onPressed: () {},
+        onPressed: () {
+          if (formKey.currentState!.validate()) {
+            print('Registrado');
+          }
+        },
       ),
     );
   }
