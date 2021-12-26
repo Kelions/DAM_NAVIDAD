@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:navidad_dam/constants.dart';
 import 'package:navidad_dam/pages/form_login.dart';
+import 'package:navidad_dam/pages/home.dart';
 import 'package:navidad_dam/service/firestore_service.dart';
 import 'package:navidad_dam/util/nav.dart';
 import 'package:navidad_dam/widgets/amigo_card.dart';
@@ -24,7 +25,7 @@ class _UserDashboardState extends State {
           IconButton(
               onPressed: () async {
                 await FirebaseAuth.instance.signOut();
-                NavUtil.navigateTo(context, FormLogin(), replacement: true);
+                NavUtil.navigateTo(context, home(), replacement: true);
               },
               icon: Icon(
                 Coolicons.log_out,
