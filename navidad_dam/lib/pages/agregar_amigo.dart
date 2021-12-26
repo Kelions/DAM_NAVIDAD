@@ -2,7 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:coolicons/coolicons.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:navidad_dam/pages/amigo_page.dart';
 import 'package:navidad_dam/service/firestore_service.dart';
+import 'package:navidad_dam/util/nav.dart';
 
 class AgregarAmigo extends StatefulWidget {
   final String userUID;
@@ -162,8 +164,11 @@ class _AgregarAmigoState extends State<AgregarAmigo> {
                     emailCtrl.text.trim(),
                     descripcionCtrl.text.trim(),
                     profesionCtrl.text.trim()));
-                Navigator.pop(context);
-                setState(() {});
+                NavUtil.navigateTo(
+                    context,
+                    AmigoDetail(widget.amigoID, widget.userUID, widget.nombre,
+                        widget.email, widget.descripcion, widget.profesion),
+                    replacement: true);
               } on FirebaseAuthException catch (except) {
                 print(except.code);
               }
