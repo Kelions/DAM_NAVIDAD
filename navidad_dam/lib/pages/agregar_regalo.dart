@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:coolicons/coolicons.dart';
+import 'package:flutter/services.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:navidad_dam/service/firestore_service.dart';
 
@@ -34,6 +35,11 @@ class _AgregarRegaloState extends State<AgregarRegalo> {
   String titleText = 'Agregar Regalo';
   String buttonText = 'Agregar';
 
+  IconButton deleteButton = IconButton(
+    icon: Icon(Coolicons.dot_03_m),
+    onPressed: () => {},
+  );
+
   @override
   Widget build(BuildContext context) {
     if (widget.id != '') {
@@ -44,11 +50,22 @@ class _AgregarRegaloState extends State<AgregarRegalo> {
 
       titleText = 'Editar Regalo';
       buttonText = 'Guardar';
+
+      deleteButton = IconButton(
+        icon: Icon(Coolicons.trash_full),
+        onPressed: () async {
+          print(await FirestoreService().regalosBorrar(widget.id));
+          Navigator.pop(context);
+        },
+      );
     }
     return Scaffold(
       appBar: AppBar(
         title: Row(children: [Icon(MdiIcons.gift), Text(titleText)]),
         centerTitle: true,
+        actions: [
+          deleteButton,
+        ],
       ),
       body: Form(
         key: formKey,
@@ -111,6 +128,8 @@ class _AgregarRegaloState extends State<AgregarRegalo> {
       controller: valorCtrl,
       decoration: InputDecoration(
           labelText: 'Valor Del Regalo', icon: Icon(MdiIcons.cash)),
+      keyboardType: TextInputType.number,
+      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       validator: (valor) {
         if (valor!.isEmpty) {
           return 'Ingrese Valor del regalo';

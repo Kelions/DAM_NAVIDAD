@@ -34,7 +34,7 @@ class FirestoreService {
 
   Future regalosBorrar(String regaloID) {
     return FirebaseFirestore.instance
-        .collection('amigos')
+        .collection('regalos')
         .doc(regaloID)
         .delete();
   }
