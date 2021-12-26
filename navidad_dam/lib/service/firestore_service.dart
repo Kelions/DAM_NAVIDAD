@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class FirestoreService {
   Stream<QuerySnapshot> regalos() {
@@ -8,7 +8,11 @@ class FirestoreService {
 
   // Amigos
   Stream<QuerySnapshot> amigos() {
-    return FirebaseFirestore.instance.collection('amigos').snapshots();
+    String? userUID = FirebaseAuth.instance.currentUser?.uid;
+    return FirebaseFirestore.instance
+        .collection('amigos')
+        .where("user_uid", isEqualTo: userUID)
+        .snapshots();
   }
 
   Future amigosAgregar(
