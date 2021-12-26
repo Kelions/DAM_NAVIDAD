@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:navidad_dam/constants.dart';
 import 'package:navidad_dam/pages/agregar_amigo.dart';
+import 'package:navidad_dam/pages/agregar_regalo.dart';
 import 'package:navidad_dam/service/firestore_service.dart';
 import 'package:navidad_dam/util/nav.dart';
 import 'package:navidad_dam/widgets/regalo_card.dart';
@@ -136,7 +137,15 @@ class _AmigoDetailState extends State<AmigoDetail> {
                 },
               );
             },
-          ))
+          )),
+          Container(
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: () =>
+                  NavUtil.navigateTo(context, AgregarRegalo(widget.id)),
+              child: Text('Agregar Regalo'),
+            ),
+          )
         ],
       ),
     );

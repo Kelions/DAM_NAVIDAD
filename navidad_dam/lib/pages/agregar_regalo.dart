@@ -3,7 +3,19 @@ import 'package:coolicons/coolicons.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class AgregarRegalo extends StatefulWidget {
-  AgregarRegalo({Key? key}) : super(key: key);
+  final String amigoID;
+  final String id;
+  final String regalo;
+  final String descripcion;
+  final int valor;
+  final String tienda;
+
+  AgregarRegalo(this.amigoID,
+      {this.id = '',
+      this.descripcion = '',
+      this.regalo = '',
+      this.valor = 0,
+      this.tienda = ''});
 
   @override
   _AgregarRegaloState createState() => _AgregarRegaloState();
@@ -12,12 +24,25 @@ class AgregarRegalo extends StatefulWidget {
 class _AgregarRegaloState extends State<AgregarRegalo> {
   final formKey = GlobalKey<FormState>();
 
+  TextEditingController regaloCtrl = TextEditingController();
+  TextEditingController descripcionCtrl = TextEditingController();
+  TextEditingController valorCtrl = TextEditingController();
+  TextEditingController tiendaCtrl = TextEditingController();
+
+  String titleText = 'Agregar Regalo';
+  String buttonText = 'Agregar';
+
   @override
   Widget build(BuildContext context) {
+    if (widget.id != '') {
+      regaloCtrl.text = widget.regalo;
+      descripcionCtrl.text = widget.descripcion;
+      valorCtrl.text = widget.valor.toString();
+      tiendaCtrl.text = widget.tienda;
+    }
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(MdiIcons.gift),
-        title: Text("Agregar Regalo"),
+        title: Row(children: [Icon(MdiIcons.gift), Text(titleText)]),
         centerTitle: true,
       ),
       body: Form(
@@ -48,6 +73,7 @@ class _AgregarRegaloState extends State<AgregarRegalo> {
 
   TextFormField campoRegalo() {
     return TextFormField(
+      controller: regaloCtrl,
       decoration:
           InputDecoration(labelText: 'Regalo', icon: Icon(MdiIcons.giftOpen)),
       validator: (regalo) {
@@ -62,6 +88,7 @@ class _AgregarRegaloState extends State<AgregarRegalo> {
 
   TextFormField campoDescripcion() {
     return TextFormField(
+      controller: descripcionCtrl,
       decoration: InputDecoration(
           labelText: 'Descripción', icon: Icon(MdiIcons.renameBox)),
       validator: (descripcion) {
@@ -76,6 +103,7 @@ class _AgregarRegaloState extends State<AgregarRegalo> {
 
   TextFormField campoValor() {
     return TextFormField(
+      controller: valorCtrl,
       decoration: InputDecoration(
           labelText: 'Valor Del Regalo', icon: Icon(MdiIcons.cash)),
       validator: (valor) {
@@ -90,6 +118,7 @@ class _AgregarRegaloState extends State<AgregarRegalo> {
 
   TextFormField campoTienda() {
     return TextFormField(
+      controller: tiendaCtrl,
       decoration: InputDecoration(
           labelText: 'Tienda', icon: Icon(MdiIcons.officeBuildingCogOutline)),
       validator: (tienda) {
