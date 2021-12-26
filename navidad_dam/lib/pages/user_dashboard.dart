@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:navidad_dam/constants.dart';
+import 'package:navidad_dam/pages/agregar_amigo.dart';
 import 'package:navidad_dam/pages/form_login.dart';
 import 'package:navidad_dam/pages/home.dart';
 import 'package:navidad_dam/service/firestore_service.dart';
@@ -16,7 +17,7 @@ class UserDashboard extends StatefulWidget {
   _UserDashboardState createState() => _UserDashboardState();
 }
 
-class _UserDashboardState extends State {
+class _UserDashboardState extends State<UserDashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -39,7 +40,7 @@ class _UserDashboardState extends State {
             width: double.infinity,
             color: kSecondaryColor,
             child: FutureBuilder(
-              future: getUsuario(),
+              future: getUsuarioEmail(),
               builder: (context, AsyncSnapshot snapshot) {
                 if (!snapshot.hasData) {
                   return Text('');
@@ -86,6 +87,13 @@ class _UserDashboardState extends State {
                 );
               },
             ),
+          ),
+          Container(
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: () => NavUtil.navigateTo(context, AgregarAmigo()),
+              child: Text('Agregar Amigo'),
+            ),
           )
         ],
       ),
@@ -93,7 +101,7 @@ class _UserDashboardState extends State {
   }
 }
 
-Future<String> getUsuario() async {
+Future<String> getUsuarioEmail() async {
   SharedPreferences sp = await SharedPreferences.getInstance();
   return sp.getString('user_email') ?? '';
 }

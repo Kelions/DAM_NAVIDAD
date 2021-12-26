@@ -16,8 +16,10 @@ class _AgregarAmigoState extends State<AgregarAmigo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Coolicons.user_heart),
-        title: Text("Agregar amigo"),
+        title: Row(children: [
+          Icon(Coolicons.user_heart),
+          Text("Agregar amigo"),
+        ]),
         centerTitle: true,
       ),
       body: Form(
