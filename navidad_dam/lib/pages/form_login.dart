@@ -1,7 +1,9 @@
+import 'package:coolicons/coolicons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:navidad_dam/pages/user_dashboard.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import 'package:navidad_dam/util/nav.dart';
 
@@ -18,9 +20,6 @@ class _FormLoginState extends State<FormLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Iniciar Sesion'),
-      ),
       body: Padding(
         padding: EdgeInsets.all(15),
         child: Form(
@@ -28,12 +27,14 @@ class _FormLoginState extends State<FormLogin> {
             children: [
               TextFormField(
                 controller: emailCtrl,
-                decoration: InputDecoration(labelText: 'Email'),
+                decoration: InputDecoration(
+                    labelText: 'Email', icon: Icon(MdiIcons.cardAccountMail)),
                 keyboardType: TextInputType.emailAddress,
               ),
               TextFormField(
                 controller: passwordCtrl,
-                decoration: InputDecoration(labelText: 'Contraseña'),
+                decoration: InputDecoration(
+                    labelText: 'Contraseña', icon: Icon(MdiIcons.accountKey)),
                 obscureText: true,
               ),
               botonLogin(),

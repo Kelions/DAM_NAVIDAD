@@ -15,29 +15,21 @@ class _form_registroState extends State<form_registro> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          leading: Icon(MdiIcons.hexagram),
-          title: Text('Registro'),
-          backgroundColor: Colors.green.shade900),
       body: Form(
         key: formKey,
         child: Column(
           children: [
             Container(
-                alignment: Alignment.center,
-                decoration: BoxDecoration(color: kPrimaryColor),
-                child: Icon(MdiIcons.account),
-                padding: EdgeInsets.all(10)),
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.all(5),
-                child: ListView(
-                  children: [
-                    campoUsuario(),
-                    campoClave(),
-                    campoEmail(),
-                    botonRegistrar(),
-                  ],
+              child: Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(5),
+                  child: ListView(
+                    children: [
+                      campoEmail(),
+                      campoClave(),
+                      botonRegistrar(),
+                    ],
+                  ),
                 ),
               ),
             )
@@ -45,12 +37,6 @@ class _form_registroState extends State<form_registro> {
         ),
       ),
     );
-  }
-
-  TextFormField campoUsuario() {
-    return TextFormField(
-        decoration: InputDecoration(
-            labelText: 'Usuario', icon: Icon(MdiIcons.accountArrowLeft)));
   }
 
   TextFormField campoClave() {

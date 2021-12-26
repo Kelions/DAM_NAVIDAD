@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navidad_dam/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
-
+import 'package:navidad_dam/pages/home.dart';
 import 'package:navidad_dam/pages/form_registro.dart';
 import 'package:navidad_dam/pages/form_login.dart';
 
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         secondary: kSecondaryColor,
         background: kBackgroundColor,
       )),
-      home: FormLogin(),
+      home: home(),
     );
   }
 }
